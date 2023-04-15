@@ -13,7 +13,7 @@ function DashBoard() {
     <div class="grid grid-cols-4 gap-4">
       <div class="bg-white rounded-lg shadow-lg p-6">
         <h3 class="text-lg font-medium mb-4">Box 1</h3>
-        <p class="text-gray-500 text-sm">Data 1</p>
+        <p class="text-gray-500 text-sm">Datadf 1</p>
         <LineChart />
       </div>
       <div class="bg-white rounded-lg shadow-lg p-6">
