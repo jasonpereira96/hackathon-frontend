@@ -14,6 +14,7 @@ function DashBoard() {
       <div class="bg-white rounded-lg shadow-lg p-6">
         <h3 class="text-lg font-medium mb-4">Box 1</h3>
         <p class="text-gray-500 text-sm">Data 1</p>
+        <LineChart />
       </div>
       <div class="bg-white rounded-lg shadow-lg p-6">
         <h3 class="text-lg font-medium mb-4">Box 2</h3>
