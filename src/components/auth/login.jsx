@@ -1,6 +1,9 @@
 // export default function Login() {
 //   return <h1>Login page</h1>
 // }
+import { useState } from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "/src/firebase.js"; 
 
 function App() {
 
@@ -15,8 +18,9 @@ useEffect(() => {
     fetchData();
   }, [2]); // Or [] if effect doesn't need props or state
 
+const LogIn = () => {
   return (
-    <div class="bg-slate-500">
+    <div className="bg-slate-500">
       <h1>Login</h1>
       <LoginForm />
       {/* <h1>Signup</h1>
@@ -38,10 +42,13 @@ function LoginForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await auth.signInWithEmailAndPassword(email, password);
+      await signInWithEmailAndPassword(auth, email, password);
+
       console.log("User signed in");
+
     } catch (error) {
       console.log(error);
+      // Handle errors (e.g., display error messages)
     }
   };
 
@@ -98,33 +105,4 @@ function LoginForm() {
   );
 }
 
-function SignupForm() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await auth.createUserWithEmailAndPassword(email, password);
-      console.log("User created");
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button type="submit">Signup</button>
-    </form>
-  );
-}
+export default LogIn;
