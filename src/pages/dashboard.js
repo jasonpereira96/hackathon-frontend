@@ -1,16 +1,23 @@
 import { Html, Main } from "next/document";
 import { ColorButton, Dropdown, ListFeed } from "./components";
 import { LineChart } from "./components";
+import ProfileDropdown from 'src/components/ProfileDropdown';
+
 
 function Dash() {
   return (
     <div>
-      <h1 class="flex items-center text-5xl font-extrabold dark:bg-slate-800">
-        Hydro
-        <span class="bg-blue-100 text-blue-800 text-2xl font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-2">
-          Ponics
-        </span>
-      </h1>
+      <div class="flex justify-between items-center px-4 py-2 dark:bg-slate-800">
+        <h1 class="flex items-center text-5xl font-extrabold dark:bg-slate-800">
+          Hydro
+          <span class="bg-blue-100 text-blue-800 text-2xl font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-2">
+            Ponics
+          </span>
+        </h1>
+        <div >
+          <ProfileDropdown />
+        </div>
+      </div>
       <div className="min-h-screen flex items-center justify-center dark:bg-slate-800 py-12 px-4 sm:px-6 lg:px-8">
         <DashBoard />
       </div>
