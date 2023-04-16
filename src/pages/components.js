@@ -65,6 +65,8 @@ export function Dropdown() {
 
       <br/>
 
+      <hr class="mb-12"/>
+
       <h2 class="ftext-lg font-large mb-4 text-slate-800"> Lights off after sunset </h2>
       <div className="relative inline-block w-full text-gray-700">
         <select

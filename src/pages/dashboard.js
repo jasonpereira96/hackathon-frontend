@@ -47,6 +47,10 @@ function checkTurbulence(inputTurbulence) {
   }
 }
 
+function statusColor(status) {
+  return status === "Stable" ? "text-green-500" : "text-red-500";
+}
+
 
 function DashBoard() {
   // fetching data
@@ -120,17 +124,23 @@ function DashBoard() {
       </div>
       <div class="bg-blue-200 rounded-lg shadow-lg p-6">
       <h3 class="text-3xl font-medium">Water Level Status</h3>
-      <hr class="mb-2"/>
-      <h4> Overflow Status: 
-        <span>
-          {checkOverflow(overflow)}
-        </span>
-      </h4>
-      <h4> Turbulence Status: 
-        <span>
-          {checkTurbulence(turbulence)}
-        </span>
-      </h4>
+      <hr class="mb-20"/>
+      <h4 class="text-2xl font-medium">
+          {" "}
+          Overflow Status:
+          <span class={`ml-1 ${statusColor(checkOverflow(overflow))}`}>
+            {checkOverflow(overflow)}
+          </span>
+        </h4>
+        <hr class="mb-20 mt-20"/>
+        <h4 class="text-2xl font-medium">
+          {" "}
+          Turbulence Status:
+          <span class={`ml-1 ${statusColor(checkTurbulence(turbulence))}`}>
+            {checkTurbulence(turbulence)}
+          </span>
+        </h4>
+        <hr class="mb-20 mt-20"/>
       </div>
       <div class="bg-blue-200 rounded-lg shadow-lg p-6 row-span-2">
         <h3 class="text-3xl font-medium">Pump Feed</h3>
