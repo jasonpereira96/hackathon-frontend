@@ -1,23 +1,26 @@
 import axios from "axios";
 
-console.log(`axios base url: ${process.env.API_URL}`);
+// console.log(`axios base url: ${process.env.API_URL}`);
 
 const instance = axios.create({
-    baseURL: "http://3.87.5.220",
-    timeout: 5000,
-    headers: {'X-Custom-Header': 'foobar'}
+  baseURL: "http://3.87.5.220",
+  timeout: 5000,
+  headers: { "X-Custom-Header": "foobar" },
 });
 
-axios.interceptors.request.use(function (config) {
+axios.interceptors.request.use(
+  function (config) {
     // Do something before request is sent
     config.headers = {
-        ...config.headers,
-        token: localStorage.getItem("token")
+      ...config.headers,
+      token: localStorage.getItem("token"),
     };
     return config;
-}, function (error) {
+  },
+  function (error) {
     // Do something with request error
     return Promise.reject(error);
-});
+  }
+);
 
 export default instance;

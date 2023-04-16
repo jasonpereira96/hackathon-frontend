@@ -32,6 +32,7 @@ function DashBoard() {
     async function fetch() {
       try {
         let d = await getData();
+        // const jsonObj = JSON.parse(d);
         console.log(d);
       } catch (e) {
         console.log(e);

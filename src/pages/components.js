@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useEffect } from "react";
+import { getData } from "@/api/api";
 
 const options = [
   { value: "option1", label: "0 Hours" },
@@ -48,17 +50,26 @@ import Chart from "chart.js/auto";
 import { Line } from "react-chartjs-2";
 
 export const LineChart = () => {
-  // useEffect(() => {
-  //   async function fetch() {
-  //     try {
-  //       let d = await getData();
-  //       console.log(d);
-  //     } catch (e) {
-  //       console.log(e);
-  //     }
-  //   }
-  //   fetch();
-  // }, []);
+  let jsonObj;
+  let phData;
+
+  useEffect(() => {
+    async function fetch() {
+      try {
+        let d = await getData();
+        phData = d.data;
+        // jsonObj = JSON.parse(d);
+        console.log(d.data);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+    fetch();
+  }, []);
+
+  // let time = [];
+  // time = phData;
+
   const data = {
     labels: ["January", "February", "March", "April", "May", "June", "July"],
     datasets: [
