@@ -1,6 +1,6 @@
 import { Html, Main } from "next/document";
 import { ColorButton, Dropdown, ListFeed } from "./components";
-import { LineChart } from "./components";
+import { LineChart, MyChart, LineChart2 } from "./components";
 import ProfileDropdown from "src/components/ProfileDropdown";
 import { useEffect } from "react";
 import { getData } from "@/api/api";
@@ -28,18 +28,18 @@ function Dash() {
 
 function DashBoard() {
   // fetching data
-  useEffect(() => {
-    async function fetch() {
-      try {
-        let d = await getData();
-        // const jsonObj = JSON.parse(d);
-        console.log(d);
-      } catch (e) {
-        console.log(e);
-      }
-    }
-    fetch();
-  }, []);
+  // useEffect(() => {
+  //   async function fetch() {
+  //     try {
+  //       let d = await getData();
+  //       // const jsonObj = JSON.parse(d);
+  //       console.log(d);
+  //     } catch (e) {
+  //       console.log(e);
+  //     }
+  //   }
+  //   fetch();
+  // }, []);
   return (
     <div class="grid grid-cols-4 gap-4 min-h-screen min-w-full">
       <div class="bg-blue-200 rounded-lg shadow-lg p-6">
@@ -57,11 +57,11 @@ function DashBoard() {
       <div class="bg-blue-200 rounded-lg shadow-lg row-span-2 p-6">
         <Dropdown />
       </div>
-      <div class="bg-blue-200 rounded-lg shadow-lg p-6 ">
+      <div class=" bg-blue-200 rounded-lg shadow-lg p-1 ">
         <LineChart />
       </div>
       <div class="bg-blue-200 rounded-lg shadow-lg p-6 ">
-        <LineChart />
+        <LineChart2 />
       </div>
     </div>
   );

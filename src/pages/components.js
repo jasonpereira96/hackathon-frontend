@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useEffect } from "react";
 import { getData } from "@/api/api";
 
@@ -48,48 +48,113 @@ export function Dropdown() {
 
 import Chart from "chart.js/auto";
 import { Line } from "react-chartjs-2";
+import moment from "moment";
 
-export const LineChart = () => {
-  let jsonObj;
-  let phData;
+export function LineChart() {
+  const [chartData, setChartData] = useState({});
+  const [data2, setData] = useState([]);
 
   useEffect(() => {
-    async function fetch() {
-      try {
-        let d = await getData();
-        phData = d.data;
-        // jsonObj = JSON.parse(d);
-        console.log(d.data);
-      } catch (e) {
-        console.log(e);
-      }
-    }
-    fetch();
+    const fetchData = async () => {
+      // fetch data here
+      let d = await getData();
+      let phData = d.data;
+      let info = phData.readings;
+      console.log(info.createdAt);
+      setData(phData.readings);
+      // transform data into Chart.js format
+      const chartData = {
+        labels: phData.readings.map((item) =>
+          moment(item.createdAt).format("MM/DD")
+        ),
+        datasets: [
+          {
+            label: "PH Levels in soil",
+            data: phData.readings.map((item) => item.ph),
+            fill: true,
+            borderColor: "green",
+            tension: 0.1,
+          },
+        ],
+      };
+      setChartData(chartData);
+    };
+
+    fetchData();
   }, []);
 
-  // let time = [];
-  // time = phData;
+  useEffect(() => {
+    // create and update chart
+    const chart = new Chart("myChart", {
+      type: "line",
+      data: chartData,
+    });
 
-  const data = {
-    labels: ["January", "February", "March", "April", "May", "June", "July"],
-    datasets: [
-      {
-        label: "My dataset",
-        data: [65, 59, 80, 81, 56, 55, 40],
-        fill: false,
-        borderColor: "rgb(75, 192, 192)",
-        tension: 0.1,
-      },
-    ],
-  };
+    // clean up chart on unmount
+    return () => {
+      chart.destroy();
+    };
+  }, [chartData]);
 
   return (
-    <div class="bg-white">
-      <h2>Line Chart</h2>
-      <Line data={data} />
+    <div class="object-fill">
+      <canvas id="myChart" class="object-fill"></canvas>
     </div>
   );
-};
+}
+
+export function LineChart2() {
+  const [chartData, setChartData] = useState({});
+  const [data2, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      // fetch data here
+      let d = await getData();
+      let phData = d.data;
+      let info = phData.readings;
+      console.log(info.createdAt);
+      setData(phData.readings);
+      // transform data into Chart.js format
+      const chartData = {
+        labels: phData.readings.map((item) =>
+          moment(item.createdAt).format("MM/DD")
+        ),
+        datasets: [
+          {
+            label: "Water Flow Rate",
+            data: phData.readings.map((item) => item.humidity),
+            fill: true,
+            borderColor: "red",
+            tension: 0.1,
+          },
+        ],
+      };
+      setChartData(chartData);
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    // create and update chart
+    const chart = new Chart("myChart2", {
+      type: "line",
+      data: chartData,
+    });
+
+    // clean up chart on unmount
+    return () => {
+      chart.destroy();
+    };
+  }, [chartData]);
+
+  return (
+    <div class="object-fill items-center">
+      <canvas id="myChart2" class="object-fill"></canvas>
+    </div>
+  );
+}
 
 export function ColorButton() {
   const [isClicked, setIsClicked] = useState(false);
