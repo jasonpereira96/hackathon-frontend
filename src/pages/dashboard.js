@@ -1,8 +1,9 @@
 import { Html, Main } from "next/document";
-import { ColorButton, Dropdown, ListFeed } from "./components";
+import { ColorButton, Dropdown, ListFeed} from "./components";
 import { LineChart } from "./components";
 import ProfileDropdown from "src/components/ProfileDropdown";
-import { useEffect } from "react";
+import CustomBarChart from "./customBarChart";
+import { useEffect, useState } from "react";
 import { getData } from "@/api/api";
 
 function Dash() {
@@ -26,14 +27,43 @@ function Dash() {
   );
 }
 
+function changeToFahrenheit(inputCelsius) {
+  const f = inputCelsius * (9/5) + 32; 
+  return f;
+}
+
+
 function DashBoard() {
   // fetching data
+  const [temp, setTemp] = useState("~");
+  const [humidity, setHumidity] = useState("~");
+
+  const data = [
+    {
+      name: 'F',
+      value: changeToFahrenheit(temp),
+    },
+    {
+      name: 'C',
+      value: temp,
+    },
+    {
+      name: '%',
+      value: humidity,
+    },
+  ];
+  
+  // Set ideal values for the bar chart
+  const idealValues = [changeToFahrenheit(25), 25, 50];
+
   useEffect(() => {
     async function fetch() {
       try {
         let d = await getData();
         // const jsonObj = JSON.parse(d);
         console.log(d);
+        setTemp(d.data.readings[0].temperature);
+        setHumidity(d.data.readings[0].humidity);
       } catch (e) {
         console.log(e);
       }
@@ -43,12 +73,35 @@ function DashBoard() {
   return (
     <div class="grid grid-cols-4 gap-4 min-h-screen min-w-full">
       <div class="bg-blue-200 rounded-lg shadow-lg p-6">
-        <h3 class="text-lg font-medium mb-4">Box 1</h3>
-        <p class="text-gray-500 text-sm">Datadf 1</p>
+        <h3 class="text-3xl font-medium">Temperature & Humidity</h3>
+        <hr class="mb-2"/>
+        <h4 class="text-4xl mb-5 mt-5 text-slate-800">
+          {changeToFahrenheit(temp).toFixed(2)}
+          <span class="text-2xl text-gray-400 ml-1">
+            F°
+          </span>
+        </h4>
+        <h4 class="text-4xl mb-3 mt-5 text-slate-800">
+        {temp}
+          <span class="text-2xl text-gray-400 ml-1">
+            C°
+          </span>
+        </h4>
+        <h4 class="text-4xl mb-3 mt-5 text-slate-800">
+        {humidity}
+          <span class="text-2xl text-gray-400 ml-1">
+          %
+          </span>
+        </h4>
+        <hr class="mb-6" />
+        <div className="w-100% h-1/2 mr-4">
+          <CustomBarChart data={data} idealValues={idealValues} />
+        </div>
+
       </div>
       <div class="bg-blue-200 rounded-lg shadow-lg p-6">
-        <h3 class="text-lg font-medium mb-4">Box 2</h3>
-        <p class="text-gray-500 text-sm">Data 2</p>
+      <h3 class="text-3xl font-medium">Water Level</h3>
+      <hr class="mb-2"/>
       </div>
       <div class="bg-blue-200 rounded-lg shadow-lg p-6 row-span-2">
         <ColorButton />
