@@ -108,6 +108,8 @@ function DashBoard() {
         <ListFeed />
       </div>
       <div class="bg-blue-200 rounded-lg shadow-lg row-span-2 p-6">
+        <h3 class="text-3xl font-medium">Light Status</h3>
+        <hr class="mb-2"/>
         <Dropdown />
       </div>
       <div class="bg-blue-200 rounded-lg shadow-lg p-6 ">
