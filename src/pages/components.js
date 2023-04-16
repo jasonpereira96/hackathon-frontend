@@ -17,7 +17,7 @@ export function Dropdown() {
 
   return (
     <div>
-      <h2> Lights </h2>
+      <h2 class="ftext-lg font-large mb-4 text-black"> LIGHTS </h2>
       <div className="relative inline-block w-full text-gray-700">
         <select
           className="w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none focus:shadow-outline"

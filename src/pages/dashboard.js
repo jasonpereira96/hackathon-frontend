@@ -20,26 +20,26 @@ function App() {
 
 function DashBoard() {
   return (
-    <div class="grid grid-cols-4 gap-4">
-      <div class="bg-white rounded-lg shadow-lg p-6">
+    <div class="grid grid-cols-4 gap-4 min-h-screen min-w-full">
+      <div class="bg-blue-200 rounded-lg shadow-lg p-6">
         <h3 class="text-lg font-medium mb-4">Box 1</h3>
         <p class="text-gray-500 text-sm">Datadf 1</p>
       </div>
-      <div class="bg-white rounded-lg shadow-lg p-6">
+      <div class="bg-blue-200 rounded-lg shadow-lg p-6">
         <h3 class="text-lg font-medium mb-4">Box 2</h3>
         <p class="text-gray-500 text-sm">Data 2</p>
       </div>
-      <div class="bg-white rounded-lg shadow-lg p-6 row-span-2">
+      <div class="bg-blue-200 rounded-lg shadow-lg p-6 row-span-2">
         <ColorButton />
         <ListFeed />
       </div>
-      <div class=" bg-white rounded-lg shadow-lg row-span-2 p-6">
+      <div class="bg-blue-200 rounded-lg shadow-lg row-span-2 p-6">
         <Dropdown />
       </div>
-      <div class="bg-white rounded-lg shadow-lg p-6 ">
+      <div class="bg-blue-200 rounded-lg shadow-lg p-6 ">
         <LineChart />
       </div>
-      <div class="bg-white rounded-lg shadow-lg p-6 ">
+      <div class="bg-blue-200 rounded-lg shadow-lg p-6 ">
         <LineChart />
       </div>
     </div>
