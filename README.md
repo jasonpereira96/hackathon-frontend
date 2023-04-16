@@ -11,5 +11,8 @@ https://github.com/kaniecko/hackathon_hardware
 ### Deployment
 http://3.93.20.205/index.html
 ### Credentials
-Username: hydroponicsuic@gmail.com
-Password: $12345678
+- Username: hydroponicsuic@gmail.com
+- Password: $12345678
+
+## Screenshot
+![Screenshot](/ss.png)
