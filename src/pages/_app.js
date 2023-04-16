@@ -1,5 +1,14 @@
-import '@/styles/globals.css'
+// pages/_app.js
+import '@/styles/globals.css';
+import React from 'react';
+import AuthDetails from '../components/auth/AuthDetails';
 
-export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />
+function MyApp() {
+  return (
+    <div className="App">
+      <AuthDetails />
+    </div>
+  );
 }
+
+export default MyApp;
