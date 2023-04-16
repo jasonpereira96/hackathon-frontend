@@ -58,6 +58,7 @@ function DashBoard() {
   const [humidity, setHumidity] = useState("~");
   const [overflow, setOverflow] = useState(false);
   const [turbulence, setTurbulence] = useState(false);
+  const [ph, setphLevel] = useState(false);
 
   const data = [
     {
@@ -87,6 +88,7 @@ function DashBoard() {
         setHumidity(d.data.readings[0].humidity);
         setOverflow(d.data.readings[0].overflow);
         setTurbulence(d.data.readings[0].turbulence);
+        setphLevel(d.data.readings[0].ph);
       } catch (e) {
         console.log(e);
       }
@@ -155,10 +157,23 @@ function DashBoard() {
         <hr class="mb-2"/>
         <Dropdown />
       </div>
-      <div class=" bg-blue-200 rounded-lg shadow-lg p-1 ">
+      <div class=" bg-blue-200 rounded-lg shadow-lg p-6">
+        <h3 class="text-3xl font-medium">Ph Level</h3>
+        <hr class="mb-2"/>
         <LineChart />
+        <h4 class="text-2xl mt-2 text-white">
+          Most Recent pH Level:
+          <span class="text-2xl text-slate-800 ml-2">
+            {ph}
+            <span class="text-lg text-gray-400 ml-1">
+              pH
+            </span>
+          </span>
+        </h4>
       </div>
       <div class="bg-blue-200 rounded-lg shadow-lg p-6 ">
+        <h3 class="text-3xl font-medium">Humidity History</h3>
+        <hr class="mb-2"/>
         <LineChart2 />
       </div>
     </div>

@@ -122,7 +122,7 @@ export function LineChart() {
         ),
         datasets: [
           {
-            label: "PH Levels in soil",
+            label: "PH Levels in Water",
             data: phData.readings.map((item) => item.ph),
             fill: true,
             borderColor: "green",
@@ -175,7 +175,7 @@ export function LineChart2() {
         ),
         datasets: [
           {
-            label: "Water Flow Rate",
+            label: "Humidity Levels",
             data: phData.readings.map((item) => item.humidity),
             fill: true,
             borderColor: "red",
