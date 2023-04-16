@@ -3,6 +3,18 @@
 // }
 
 function App() {
+
+// api test
+useEffect(() => {
+    async function fetchData() {
+      // You can await here
+      let data = await getData();
+        console.log(data);
+      // ...
+    }
+    fetchData();
+  }, [2]); // Or [] if effect doesn't need props or state
+
   return (
     <div class="bg-slate-500">
       <h1>Login</h1>
@@ -15,7 +27,9 @@ function App() {
 
 export default App;
 
-import { useState } from "react";
+import { getData } from "@/api/api";
+import { useEffect, useState } from "react";
+
 
 function LoginForm() {
   const [email, setEmail] = useState("");
