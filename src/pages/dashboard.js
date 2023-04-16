@@ -1,6 +1,6 @@
 import { Html, Main } from "next/document";
-import { ColorButton, Dropdown, ListFeed} from "./components";
-import { LineChart } from "./components";
+import { ColorButton, Dropdown, ListFeed } from "./components";
+import { LineChart, MyChart, LineChart2 } from "./components";
 import ProfileDropdown from "src/components/ProfileDropdown";
 import CustomBarChart from "./customBarChart";
 import { useEffect, useState } from "react";
@@ -155,11 +155,11 @@ function DashBoard() {
         <hr class="mb-2"/>
         <Dropdown />
       </div>
-      <div class="bg-blue-200 rounded-lg shadow-lg p-6 ">
+      <div class=" bg-blue-200 rounded-lg shadow-lg p-1 ">
         <LineChart />
       </div>
       <div class="bg-blue-200 rounded-lg shadow-lg p-6 ">
-        <LineChart />
+        <LineChart2 />
       </div>
     </div>
   );
