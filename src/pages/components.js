@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { useEffect } from "react";
 import { getData, getPumpData } from "@/api/api";
+import moment from "moment";
 
 const options = [
   { value: 15, },
@@ -101,7 +102,6 @@ export function Dropdown() {
 
 import Chart from "chart.js/auto";
 import { Line } from "react-chartjs-2";
-import moment from "moment";
 
 export function LineChart() {
   const [chartData, setChartData] = useState({});
@@ -240,8 +240,8 @@ export function ListFeed() {
     async function fetch1() {
       try {
         let d = await getPumpData();
-        console.log(d);
-        setItems(d);
+        console.log(d.data.readings);
+        setItems(d.data.readings);
       } catch (e) {
         console.log(e);
       }
@@ -261,7 +261,7 @@ export function ListFeed() {
           <div class="mt-2 mb-2 text-center sm:ml-4 sm:text-left" key={item.time}>
               <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Pump was turned <span className={item.action==="on" ? 'text-red-600' : 'text-green-700'}>{item.action === "on" ? "ON" : "OFF"}</span></h3>
               <div class="mt-1">
-                <p class="text-sm text-gray-500">{item.time}</p>
+                <p class="text-sm text-gray-500">{moment(item.time).format("MM/DD hh:mm")}</p>
               </div>
           </div>
         ))}
