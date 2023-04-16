@@ -62,7 +62,7 @@ export const LineChart = () => {
   };
 
   return (
-    <div>
+    <div class="bg-white">
       <h2>Line Chart</h2>
       <Line data={data} />
     </div>
@@ -81,13 +81,15 @@ export function ColorButton() {
     : "bg-red-500 hover:bg-red-700";
 
   return (
-    <button
-      class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-      className={`text-white font-bold py-2 px-4 rounded ${buttonColor}`}
-      onClick={handleClick}
-    >
-      {isClicked ? "On" : "Off"}
-    </button>
+    <div>
+      <button
+        class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+        className={`text-white font-bold py-2 px-4 rounded ${buttonColor}`}
+        onClick={handleClick}
+      >
+        {isClicked ? "On" : "Off"}
+      </button>
+    </div>
   );
 }
 
