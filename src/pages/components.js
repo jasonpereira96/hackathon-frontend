@@ -189,7 +189,6 @@ export function ListFeed() {
 
   return (
     <div className="max-w-md mx-auto">
-      <h1 className="text-xl font-bold mb-2">Pump Feed</h1>
       <ul className="bg-gray-100 p-2 rounded">
         {items.map((item, index) => (
           <div class="mt-2 mb-2 text-center sm:ml-4 sm:text-left" key={item.time}>

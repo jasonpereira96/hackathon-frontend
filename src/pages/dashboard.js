@@ -32,11 +32,28 @@ function changeToFahrenheit(inputCelsius) {
   return f;
 }
 
+function checkOverflow(inputOverflow) {
+  if (inputOverflow == false){
+    return "Stable";
+  } else {
+    return "Unstable";
+  }
+}
+function checkTurbulence(inputTurbulence) {
+  if (inputTurbulence == false){
+    return "Stable";
+  } else {
+    return "Unstable";
+  }
+}
+
 
 function DashBoard() {
   // fetching data
   const [temp, setTemp] = useState("~");
   const [humidity, setHumidity] = useState("~");
+  const [overflow, setOverflow] = useState(false);
+  const [turbulence, setTurbulence] = useState(false);
 
   const data = [
     {
@@ -64,6 +81,8 @@ function DashBoard() {
         console.log(d);
         setTemp(d.data.readings[0].temperature);
         setHumidity(d.data.readings[0].humidity);
+        setOverflow(d.data.readings[0].overflow);
+        setTurbulence(d.data.readings[0].turbulence);
       } catch (e) {
         console.log(e);
       }
@@ -100,11 +119,25 @@ function DashBoard() {
 
       </div>
       <div class="bg-blue-200 rounded-lg shadow-lg p-6">
-      <h3 class="text-3xl font-medium">Water Level</h3>
+      <h3 class="text-3xl font-medium">Water Level Status</h3>
       <hr class="mb-2"/>
+      <h4> Overflow Status: 
+        <span>
+          {checkOverflow(overflow)}
+        </span>
+      </h4>
+      <h4> Turbulence Status: 
+        <span>
+          {checkTurbulence(turbulence)}
+        </span>
+      </h4>
       </div>
       <div class="bg-blue-200 rounded-lg shadow-lg p-6 row-span-2">
+        <h3 class="text-3xl font-medium">Pump Feed</h3>
+        <hr class="mb-2"/>
+        <h1 className="text-xl font-bold mb-2">Emergency On/Off</h1>
         <ColorButton />
+        <hr class="mb-2 mt-2"/>
         <ListFeed />
       </div>
       <div class="bg-blue-200 rounded-lg shadow-lg row-span-2 p-6">
