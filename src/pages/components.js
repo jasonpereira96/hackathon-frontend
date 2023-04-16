@@ -48,6 +48,17 @@ import Chart from "chart.js/auto";
 import { Line } from "react-chartjs-2";
 
 export const LineChart = () => {
+  // useEffect(() => {
+  //   async function fetch() {
+  //     try {
+  //       let d = await getData();
+  //       console.log(d);
+  //     } catch (e) {
+  //       console.log(e);
+  //     }
+  //   }
+  //   fetch();
+  // }, []);
   const data = {
     labels: ["January", "February", "March", "April", "May", "June", "July"],
     datasets: [

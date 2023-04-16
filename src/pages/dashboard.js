@@ -1,8 +1,9 @@
 import { Html, Main } from "next/document";
 import { ColorButton, Dropdown, ListFeed } from "./components";
 import { LineChart } from "./components";
-import ProfileDropdown from 'src/components/ProfileDropdown';
-
+import ProfileDropdown from "src/components/ProfileDropdown";
+import { useEffect } from "react";
+import { getData } from "@/api/api";
 
 function Dash() {
   return (
@@ -14,7 +15,7 @@ function Dash() {
             Ponics
           </span>
         </h1>
-        <div >
+        <div>
           <ProfileDropdown />
         </div>
       </div>
@@ -26,6 +27,18 @@ function Dash() {
 }
 
 function DashBoard() {
+  // fetching data
+  useEffect(() => {
+    async function fetch() {
+      try {
+        let d = await getData();
+        console.log(d);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+    fetch();
+  }, []);
   return (
     <div class="grid grid-cols-4 gap-4 min-h-screen min-w-full">
       <div class="bg-blue-200 rounded-lg shadow-lg p-6">
