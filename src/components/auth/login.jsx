@@ -3,18 +3,17 @@
 // }
 import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "/src/firebase.js"; 
+import { auth } from "/src/firebase.js";
 
 const LogIn = () => {
   return (
-    <div className="bg-slate-500">
-      <h1>Login</h1>
+    <div>
       <LoginForm />
       {/* <h1>Signup</h1>
       <SignupForm /> */}
     </div>
   );
-}
+};
 
 function LoginForm() {
   const [email, setEmail] = useState("");
@@ -26,7 +25,6 @@ function LoginForm() {
       await signInWithEmailAndPassword(auth, email, password);
 
       console.log("User signed in");
-
     } catch (error) {
       console.log(error);
       // Handle errors (e.g., display error messages)
@@ -34,16 +32,19 @@ function LoginForm() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex items-center justify-center dark:bg-slate-800 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Hackathon Hydroponics
-          </h2>
+        <div class="flex items-center justify-center">
+          <h1 class="flex items-center justify-center text-5xl font-extrabold dark:bg-slate-800">
+            Hydro
+            <span class="bg-blue-100 text-blue-800 text-2xl font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-2">
+              Ponics
+            </span>
+          </h1>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="rounded-md shadow-sm -space-y-px">
-            <div>
+            <div className="px-0 py-3">
               <label htmlFor="email-address" className="sr-only">
                 Email address
               </label>
@@ -51,11 +52,11 @@ function LoginForm() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-none relative block w-full px-4 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
                 placeholder="Email address"
               />
             </div>
-            <div>
+            <div className="px-0 py-3">
               <label htmlFor="password" className="sr-only">
                 Password
               </label>
@@ -63,7 +64,7 @@ function LoginForm() {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-none relative block w-full px-4 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
                 placeholder="Password"
               />
             </div>
