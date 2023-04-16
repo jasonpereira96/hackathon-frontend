@@ -5,6 +5,19 @@ import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "/src/firebase.js"; 
 
+function App() {
+
+// api test
+useEffect(() => {
+    async function fetchData() {
+      // You can await here
+      let data = await getData();
+        console.log(data);
+      // ...
+    }
+    fetchData();
+  }, [2]); // Or [] if effect doesn't need props or state
+
 const LogIn = () => {
   return (
     <div className="bg-slate-500">
@@ -15,6 +28,12 @@ const LogIn = () => {
     </div>
   );
 }
+
+export default App;
+
+import { getData } from "@/api/api";
+import { useEffect, useState } from "react";
+
 
 function LoginForm() {
   const [email, setEmail] = useState("");
