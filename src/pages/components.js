@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import { getData } from "@/api/api";
+import { getData, getPumpData } from "@/api/api";
 
 const options = [
   { value: 15, },
@@ -167,7 +167,20 @@ export function ColorButton() {
 }
 
 export function ListFeed() {
-  const [items, setItems] = useState(["Item 1", "Item 2", "Item 3"]);
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    async function fetch1() {
+      try {
+        let d = await getPumpData();
+        console.log(d);
+        setItems(d);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+    fetch1();
+  }, []);
 
   const handleAddItem = () => {
     const newItem = `Item ${items.length + 1}`;
@@ -176,20 +189,17 @@ export function ListFeed() {
 
   return (
     <div className="max-w-md mx-auto">
-      <h1 className="text-xl font-bold mb-2">List Feed</h1>
+      <h1 className="text-xl font-bold mb-2">Pump Feed</h1>
       <ul className="bg-gray-100 p-2 rounded">
         {items.map((item, index) => (
-          <li key={index} className="p-2">
-            {item}
-          </li>
+          <div class="mt-2 mb-2 text-center sm:ml-4 sm:text-left" key={item.time}>
+              <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Pump was turned <span className={item.action==="on" ? 'text-red-600' : 'text-green-700'}>{item.action === "on" ? "ON" : "OFF"}</span></h3>
+              <div class="mt-1">
+                <p class="text-sm text-gray-500">{item.time}</p>
+              </div>
+          </div>
         ))}
       </ul>
-      <button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2"
-        onClick={handleAddItem}
-      >
-        Add Item
-      </button>
     </div>
   );
 }
